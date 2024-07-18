@@ -1,0 +1,27 @@
+name: 이메일 알림 구독 신청
+description: inflearn과 hola에 새로운 프로젝트가 올라오면 알림을 받습니다.
+title: '[구독 신청] 이메일 알림 구독 신청'
+labels:
+  - 구독신청
+body:
+  - type: input
+    id: email
+    attributes:
+      label: 알림을 받을 이메일 주소를 입력해주세요.
+      description: 새로운 프로젝트가 올라오면 해당 이메일 주소로 알림을 보내드립니다.
+      placeholder: email@example.com
+    validations:
+      required: true
+      format: email
+  - type: checkboxes
+    id: subjects
+    attributes:
+      label: 알림을 받을 주제를 선택해주세요.
+      description: 새로운 프로젝트의 제목과 태그를 기반으로 주제를 분류합니다.
+      options:
+        - 프론트
+        - 백엔드
+        - 기획
+        - 디자인
+        - 마케팅
+        - 모바일
