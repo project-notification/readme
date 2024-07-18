@@ -13,5 +13,5 @@ jobs:
           echo "start"
           echo "body: ${{ github.event.issue.body }}"
           echo "title: ${{ github.event.issue.title }}"
-          echo "labels: ${{ github.event.issue.labels }}"
+          echo "labels: ${{ github.event.issue.labels.name }}"
           echo "end"
