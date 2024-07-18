@@ -8,10 +8,15 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Subscribe
+
+      - name: Install jq
+        run: sudo apt-get install jq
+
+      - name: Set execute permission for script
+        run: chmod +x ./request.sh
+
+      - name: request
+        env:
+          ISSUE_BODY: ${{ github.event.issue.body }}
         run: |
-          echo "start"
-          echo "body: ${{ github.event.issue.body }}"
-          echo "title: ${{ github.event.issue.title }}"
-          echo "labels: ${{ github.event.label.name }}"
-          echo "end"
+          echo "$ISSUE_BODY" | ./request.sh
