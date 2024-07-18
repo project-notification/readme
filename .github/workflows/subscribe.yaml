@@ -16,7 +16,5 @@ jobs:
         run: chmod +x ./request.sh
 
       - name: request
-        env:
-          ISSUE_BODY: ${{ github.event.issue.body }}
         run: |
-          echo "$ISSUE_BODY" | ./request.sh
+          ./request.sh "${{ github.event.issue.body}}"
