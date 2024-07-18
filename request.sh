@@ -17,7 +17,7 @@ ITEMS=$(echo "$INPUT_TEXT" | grep -oP "(?<=- \[X\] ).*" | sed 's/주제 필터�
 JSON_DATA=$(jq -n \
             --arg email "$EMAIL" \
             --arg items "$ITEMS" \
-            '{email: $email, items: ($items | split("\n") | map(. | strip))}')
+            '{email: $email, items: ($items | split("\n") | map(. | trim))}')
 
 # JSON 데이터 출력 (디버깅용)
 echo "생성된 JSON 데이터:"
