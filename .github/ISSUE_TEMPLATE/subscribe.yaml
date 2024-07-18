@@ -11,8 +11,7 @@ body:
       description: 새로운 프로젝트가 올라오면 해당 이메일 주소로 알림을 보내드립니다.
       placeholder: email@example.com
     validations:
-      required: true
-      format: email
+      required: false
   - type: checkboxes
     id: subjects
     attributes:
