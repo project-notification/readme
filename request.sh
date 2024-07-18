@@ -11,13 +11,13 @@ fi
 EMAIL=$(echo "$INPUT_TEXT" | grep -oP '[\w.+-]+@[\w-]+\.[\w.-]+')
 
 # 선택된 항목 추출
-ITEMS=$(echo "$INPUT_TEXT" | grep -oP '(?<=- \[X\] ).*' | sed 's/주제 필터링 없이 모든 글을 메일로 받겠습니다./all/')
+ITEMS=$(echo "$INPUT_TEXT" | grep -oP "(?<=- \[X\] ).*" | sed 's/주제 필터링 없이 모든 글을 메일로 받겠습니다./all/' | sed 's/\r//')
 
-# JSON 생성
+# JSON 생성 (items를 배열로 만들 때 추가 처리)
 JSON_DATA=$(jq -n \
             --arg email "$EMAIL" \
             --arg items "$ITEMS" \
-            '{email: $email, items: ($items | split("\n"))}')
+            '{email: $email, items: ($items | split("\n") | map(. | strip))}')
 
 # JSON 데이터 출력 (디버깅용)
 echo "생성된 JSON 데이터:"
