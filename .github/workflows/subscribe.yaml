@@ -11,5 +11,7 @@ jobs:
       - name: Subscribe
         run: |
           echo "start"
-          echo "Subscribing to issue ${{ github.event.issue.body }}"
+          echo "body: ${{ github.event.issue.body }}"
+          echo "title: ${{ github.event.issue.title }}"
+          echo "labels: ${{ github.event.issue.labels }}"
           echo "end"
