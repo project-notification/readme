@@ -1,0 +1,15 @@
+name: subscribe
+on:
+  issues:
+    types: [opened, edited, reopened]
+jobs:
+  subscribe:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Subscribe
+        run: |
+          echo "start"
+          echo "Subscribing to issue ${{ github.event.issue.body }}"
+          echo "end"
