@@ -10,7 +10,12 @@ jobs:
         uses: actions/checkout@v4
 
       - name: test
-        run: echo "${{github.event.issue.labels.*.name}}"
+        if: contains(github.event.issue.labels.*.name, '구독신청')
+        run: echo "구독신청 라벨이 붙었습니다."
+
+      - name: test2
+        if: contains(github.event.issue.labels.*.name, 'abc')
+        run: echo "abc 라벨이 붙었습니다."
 
       - name: Install jq
         run: sudo apt-get install jq
