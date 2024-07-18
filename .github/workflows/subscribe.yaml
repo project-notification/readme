@@ -9,6 +9,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: test
+        run: echo "${{github.event.issue.labels.*.name}}"
+
       - name: Install jq
         run: sudo apt-get install jq
 
