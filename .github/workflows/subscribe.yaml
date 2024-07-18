@@ -4,18 +4,11 @@ on:
     types: [opened, edited, reopened]
 jobs:
   subscribe:
+    if: contains(github.event.issue.labels.*.name, '구독신청')
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
-      - name: test
-        if: contains(github.event.issue.labels.*.name, '구독신청')
-        run: echo "구독신청 라벨이 붙었습니다."
-
-      - name: test2
-        if: contains(github.event.issue.labels.*.name, 'abc')
-        run: echo "abc 라벨이 붙었습니다."
 
       - name: Install jq
         run: sudo apt-get install jq
