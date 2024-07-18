@@ -11,7 +11,7 @@ fi
 EMAIL=$(echo "$INPUT_TEXT" | grep -oP '[\w.+-]+@[\w-]+\.[\w.-]+')
 
 # 선택된 항목 추출
-ITEMS=$(echo "$INPUT_TEXT" | grep -oP '(?<=- \[X\] ).*' | sed 's/주제 필터링 없이 모든 글을 메일로 받겠습니다./all/')
+ITEMS=$(echo "$INPUT_TEXT" | grep -oP "(?<=- \[X\] ).*" | sed 's/주제 필터링 없이 모든 글을 메일로 받겠습니다./all/' | sed 's/\r//')
 
 # JSON 생성
 JSON_DATA=$(jq -n \
