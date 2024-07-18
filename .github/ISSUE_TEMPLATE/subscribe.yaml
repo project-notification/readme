@@ -18,9 +18,9 @@ body:
       label: 알림을 받을 주제를 선택해주세요.
       description: 새로운 프로젝트의 제목과 태그를 기반으로 주제를 분류합니다.
       options:
-        - 프론트
-        - 백엔드
-        - 기획
-        - 디자인
-        - 마케팅
-        - 모바일
+        - label: 프론트
+        - label: 백엔드
+        - label: 기획
+        - label: 디자인
+        - label: 마케팅
+        - label: 모바일
