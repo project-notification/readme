@@ -23,15 +23,19 @@ JSON_DATA=$(jq -n \
 FULL_URL="${API_URL}/subscribe"
 
 # Post 요청
-RESPONSE=$(curl -s -X POST -H "Content-Type: application/json" -d "$JSON_DATA" "$FULL_URL")
+RESPONSE=$(curl -s -w "\n%{http_code}" -X POST -H "Content-Type: application/json" -d "$JSON_DATA" "$FULL_URL")
 
-HTTP_STATUS=$(echo "$RESPONSE" | jq -r '.status')
+# 응답 본문과 상태 코드 분리
+HTTP_BODY=$(echo "$RESPONSE" | sed '$d')
+HTTP_STATUS=$(echo "$RESPONSE" | tail -n1)
 
+# 상태 코드에 따른 처리
 if [ "$HTTP_STATUS" == "201" ]; then
     echo "Success: 구독이 성공적으로 완료되었습니다."
+    echo "응답 본문: $HTTP_BODY"
     exit 0
 else
     echo "Error: 구독 요청이 실패했습니다. HTTP 상태 코드: $HTTP_STATUS"
-    echo "Response: $RESPONSE"
+    echo "응답 본문: $HTTP_BODY"
     exit 1
 fi
