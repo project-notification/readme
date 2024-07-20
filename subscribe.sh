@@ -7,17 +7,20 @@ if [ -z "$INPUT_TEXT" ]; then
     exit 1
 fi
 
+echo "입력 텍스트: $INPUT_TEXT"
 # 이메일 주소 추출
 EMAIL=$(echo "$INPUT_TEXT" | grep -oP '[\w.+-]+@[\w-]+\.[\w.-]+')
 
 # 선택된 항목 추출
-ITEMS=$(echo "$INPUT_TEXT" | grep -oP "(?<=- \[X\] ).*" | sed 's/\r//')
+TOPICS=$(echo "$INPUT_TEXT" | grep -oP "(?<=- \[X\] ).*" | sed 's/\r//')
+
+echo "topics: $TOPICS"
 
 # JSON 생성
 JSON_DATA=$(jq -n \
             --arg email "$EMAIL" \
-            --arg items "$ITEMS" \
-            '{email: $email, items: ($items | split("\n"))}')
+            --arg topics "$TOPICS" \
+            '{email: $email, topics: ($topics | split("\n"))}')
 
 # JSON 데이터 출력 (디버깅용)
 echo "생성된 JSON 데이터:"
