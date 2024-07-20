@@ -12,7 +12,7 @@ echo "입력 텍스트: $INPUT_TEXT"
 EMAIL=$(echo "$INPUT_TEXT" | grep -oP '[\w.+-]+@[\w-]+\.[\w.-]+')
 
 # 선택된 항목 추출
-TOPICS=$(echo "$INPUT_TEXT" | grep -oP "(?<=- \[X\] ).*" | sed 's/\r//')
+TOPICS=$(echo "$INPUT_TEXT" | grep -ioP "(?<=- \[)[xX](?=\] ).*" | sed 's/^[xX]\] //' | sed 's/\r//')
 
 echo "topics: $TOPICS"
 
