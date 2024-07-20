@@ -18,17 +18,13 @@ jobs:
       - name: Set execute permission for script
         run: chmod +x ./subscribe.sh
 
-      - name: Subscribe
-        id: subscribe
-        continue-on-error: true
+      - name: subscribe
+        continue-on-error: false
         run: |
-          output=$(./subscribe.sh "${{ github.event.issue.body}}" "${{ secrets.API_GATEWAY_URL }}")
-          echo "result=$output" >> $GITHUB_OUTPUT
+          ./subscribe.sh "${{ github.event.issue.body}}" "${{ secrets.API_GATEWAY_URL }}"
 
-      - name: Add success comment
-        if: steps.subscribe.outcome == 'success'
-        run: |
-          gh issue comment "$NUMBER" --body "$BODY"
+      - name: Add comment
+        run: gh issue comment "$NUMBER" --body "$BODY"
         env:
           NUMBER: ${{ github.event.issue.number }}
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -41,20 +37,3 @@ jobs:
 
             **구독을 취소하고 싶다면?**
             > Issue를 Close 해주세요. 자동화된 프로세스로 구독을 취소합니다.
-
-      - name: Add failure comment
-        if: steps.subscribe.outcome != 'success'
-        run: |
-          gh issue comment "$NUMBER" --body "$BODY"
-        env:
-          NUMBER: ${{ github.event.issue.number }}
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GH_REPO: ${{ github.repository }}
-          BODY: >
-            구독 신청 중 오류가 발생했습니다. 다음 오류 메시지를 확인해주세요:
-
-            ```
-            ${{ steps.subscribe.outputs.result }}
-            ```
-
-            문제가 지속되면 관리자에게 문의해주세요.
