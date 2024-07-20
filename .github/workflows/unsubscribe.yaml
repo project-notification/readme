@@ -1,0 +1,36 @@
+name: unsubscribe
+on:
+  issues:
+    types: [closed]
+permissions:
+  issues: write
+jobs:
+  unsubscribe:
+    if: contains(github.event.issue.labels.*.name, '구독신청')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install jq
+        run: sudo apt-get install jq
+
+      - name: Set execute permission for script
+        run: chmod +x ./scripts/unsubscribe.sh
+
+      - name: unsubscribe
+        continue-on-error: false
+        run: |
+          ./scripts/unsubscribe.sh "${{ github.event.issue.body}}" "${{ secrets.API_GATEWAY_URL }}"
+
+      - name: Add comment
+        run: gh issue comment "$NUMBER" --body "$BODY"
+        env:
+          NUMBER: ${{ github.event.issue.number }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_REPO: ${{ github.repository }}
+          BODY: |
+            구독이 취소되었습니다.
+
+            **다시 이메일 알림을 받고 싶다면?**
+            > Close된 Issue를 다시 Open 해주세요. 자동화된 프로세스로 구독을 신청합니다.

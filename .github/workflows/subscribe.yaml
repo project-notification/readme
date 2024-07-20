@@ -16,12 +16,12 @@ jobs:
         run: sudo apt-get install jq
 
       - name: Set execute permission for script
-        run: chmod +x ./subscribe.sh
+        run: chmod +x ./scripts/subscribe.sh
 
       - name: subscribe
         continue-on-error: false
         run: |
-          ./subscribe.sh "${{ github.event.issue.body}}" "${{ secrets.API_GATEWAY_URL }}"
+          ./scripts/subscribe.sh "${{ github.event.issue.body}}" "${{ secrets.API_GATEWAY_URL }}"
 
       - name: Add comment
         run: gh issue comment "$NUMBER" --body "$BODY"
