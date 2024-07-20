@@ -20,7 +20,7 @@ JSON_DATA=$(jq -n \
             --arg topics "$TOPICS" \
             '{email: $email, topics: ($topics | split("\n"))}')
 
-FULL_URL="${API_URL}/subscription"
+FULL_URL="${API_URL}/subscribe"
 
 # Post 요청
 RESPONSE=$(curl -s -w "\n%{http_code}" -X POST -H "Content-Type: application/json" -d "$JSON_DATA" "$FULL_URL")
