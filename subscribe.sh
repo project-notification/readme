@@ -24,3 +24,20 @@ FULL_URL="${API_URL}/subscribe"
 
 # Post 요청
 RESPONSE=$(curl -s -X POST -H "Content-Type: application/json" -d "$JSON_DATA" "$FULL_URL")
+
+HTTP_BODY=$(echo "$RESPONSE" | sed '$d')
+HTTP_STATUS=$(echo "$RESPONSE" | tail -n1)
+
+# 상태 코드에 따른 처리
+if [ "$HTTP_STATUS" -eq 201 ]; then
+    echo "성공: API 요청이 성공적으로 처리되었습니다. (상태 코드: $HTTP_STATUS)"
+    exit 0
+elif [ "$HTTP_STATUS" -eq 400 ] || [ "$HTTP_STATUS" -eq 500 ]; then
+    echo "오류: API 요청 처리 중 오류가 발생했습니다. (상태 코드: $HTTP_STATUS)"
+    echo "오류 메시지: $HTTP_BODY"
+    exit 1
+else
+    echo "알 수 없는 응답: 예상치 못한 상태 코드를 받았습니다. (상태 코드: $HTTP_STATUS)"
+    echo "응답 본문: $HTTP_BODY"
+    exit 1
+fi
