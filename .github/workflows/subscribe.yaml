@@ -18,4 +18,4 @@ jobs:
 
       - name: subscribe
         run: |
-          ./subscribe.sh "${{ github.event.issue.body}}"
+          ./subscribe.sh "${{ github.event.issue.body}}" "${{ secrets.API_GATEWAY_URL }}"
