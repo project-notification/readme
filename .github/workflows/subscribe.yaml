@@ -16,6 +16,6 @@ jobs:
       - name: Set execute permission for script
         run: chmod +x ./subscribe.sh
 
-      - name: request
+      - name: subscribe
         run: |
-          ./request.sh "${{ github.event.issue.body}}"
+          ./subscribe.sh "${{ github.event.issue.body}}"
