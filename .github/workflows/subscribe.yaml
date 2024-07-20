@@ -29,7 +29,7 @@ jobs:
           NUMBER: ${{ github.event.issue.number }}
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GH_REPO: ${{ github.repository }}
-          BODY: >
+          BODY: |
             구독 신청이 완료되었습니다. 새로운 프로젝트가 올라오면 해당 이메일 주소로 알림을 보내드립니다.
 
             **구독 정보를 수정하고 싶다면?**
