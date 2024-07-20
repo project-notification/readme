@@ -13,10 +13,10 @@ body:
     validations:
       required: true
   - type: checkboxes
-    id: subjects
+    id: topics
     attributes:
-      label: 알림을 받을 주제를 선택해주세요.
-      description: 새로운 프로젝트의 제목과 태그를 기반으로 주제를 분류합니다.
+      label: 알림을 받을 항목를 선택해주세요.
+      description: 새로운 프로젝트의 제목과 태그를 기반으로 항목를 분류합니다. 만약 아무것도 선택하지 않으면 새로운 모든 프로젝트에 대한 알림을 받습니다.
       options:
         - label: 프론트
         - label: 백엔드
@@ -24,4 +24,3 @@ body:
         - label: 디자인
         - label: 마케팅
         - label: 모바일
-        - label: 주제 필터링 없이 모든 글을 메일로 받겠습니다.

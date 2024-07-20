@@ -14,7 +14,7 @@ jobs:
         run: sudo apt-get install jq
 
       - name: Set execute permission for script
-        run: chmod +x ./request.sh
+        run: chmod +x ./subscribe.sh
 
       - name: request
         run: |
