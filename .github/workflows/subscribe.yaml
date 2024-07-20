@@ -2,6 +2,8 @@ name: subscribe
 on:
   issues:
     types: [opened, edited, reopened]
+permissions:
+  issues: write
 jobs:
   subscribe:
     if: contains(github.event.issue.labels.*.name, '구독신청')
@@ -17,5 +19,14 @@ jobs:
         run: chmod +x ./subscribe.sh
 
       - name: subscribe
+        continue-on-error: false
         run: |
           ./subscribe.sh "${{ github.event.issue.body}}" "${{ secrets.API_GATEWAY_URL }}"
+
+      - name: Add comment
+        run: gh issue comment "$NUMBER" --body "$BODY"
+        env:
+          NUMBER: ${{ github.event.issue.number }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_REPO: ${{ github.repository }}
+          BODY: '구독 신청이 완료되었습니다. 새로운 프로젝트가 올라오면 해당 이메일 주소로 알림을 보내드립니다.'
