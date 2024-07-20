@@ -6,7 +6,7 @@ permissions:
   issues: write
 jobs:
   subscribe:
-    if: contains(github.event.issue.labels.*.name, '구독신청')
+    if: contains(github.event.issue.labels.*.name, '구독신청') && github.event.issue.state == 'open'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
