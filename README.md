@@ -2,7 +2,7 @@
 
 이 서비스는 inflearn과 hola에 새로 등록되는 프로젝트 구인글을 실시간으로 분석하여 원하는 포지션의 글이 올라왔을 때 구독자에게 알림을 보내주는 자동화 시스템입니다.
 
-서비스 소개: [사이드 프로젝트 인원 모집 공고 알림 서비스를 만들어보았다.](https://velog.io/@leemhoon00/%EC%82%AC%EC%9D%B4%EB%93%9C-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EC%9D%B8%EC%9B%90-%EB%AA%A8%EC%A7%91-%EA%B3%B5%EA%B3%A0-%EC%95%8C%EB%A6%BC-%EC%84%9C%EB%B9%84%EC%8A%A4%EB%A5%BC-%EB%A7%8C%EB%93%A4%EC%96%B4%EB%B3%B4%EC%95%98%EB%8B%A4)
+동작 원리: [사이드 프로젝트 인원 모집 공고 알림 서비스를 만들어보았다.](https://velog.io/@leemhoon00/%EC%82%AC%EC%9D%B4%EB%93%9C-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EC%9D%B8%EC%9B%90-%EB%AA%A8%EC%A7%91-%EA%B3%B5%EA%B3%A0-%EC%95%8C%EB%A6%BC-%EC%84%9C%EB%B9%84%EC%8A%A4%EB%A5%BC-%EB%A7%8C%EB%93%A4%EC%96%B4%EB%B3%B4%EC%95%98%EB%8B%A4)
 
 ## 주요 기능
 - inflearn과 hola의 새로운 프로젝트 구인글 실시간 모니터링
