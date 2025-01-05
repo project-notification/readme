@@ -37,3 +37,10 @@
 - 구독을 취소하고 싶으시다면 `Issue`를 `Close` 해주세요.
 - topic별로 분류하지 않고, 모든 프로젝트에 대해서 알림을 받고 싶으시다면 checkbox를 비워주세요.
 - 추가 기능 및 버그사항은 Issue를 통해 알려주세요.
+
+## Source Code
+
+- [메일 전송](https://github.com/project-notification/send-email)
+- [전송 예약](https://github.com/project-notification/reserve)
+- [구독](https://github.com/project-notification/subscribe)
+- [구독 해제](https://github.com/project-notification/unsubscribe)
